@@ -1,0 +1,17 @@
+web:
+  restart: always
+  build: .
+  command: npm start
+  links:
+   - db
+  ports:
+   - 3000:3000
+  environment:
+   - PORT=3000
+  volumes:
+   - .:/usr/src/app/
+db:
+  restart: always
+  image: mongo:3.2
+  ports:
+   - 27017:27017
