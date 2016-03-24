@@ -12,9 +12,9 @@ mongoose.connect('mongodb://db:27017/meetup', function(err){
 });
 
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  res.send('Hello World! Restarted8');
 });
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
   console.log('Example app listening on port 3000!');
 });
