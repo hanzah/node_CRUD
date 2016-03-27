@@ -9,7 +9,7 @@ gulp.task('serve', function(){
 			'PORT': 3000
 		},
 		legacyWatch: true,
-		watch: ['*.js', 'app/*.js', 'app/**/*.jss']
+		watch: ['*.js', 'app/*.js', 'app/**/*.js']
 	}
 
 	return nodemon(options).on('restart', function(enc){

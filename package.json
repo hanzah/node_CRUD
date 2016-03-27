@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/OpenBacklog/Networks.MeetUp.Node.js#readme",
   "dependencies": {
+    "body-parser": "^1.15.0",
     "express": "^4.13.4",
-    "mongoose": "^4.4.8"
+    "mongoose": "^4.4.8",
+    "passport": "^0.3.2",
+    "passport-facebook-token": "^3.2.0"
   },
   "devDependencies": {
     "gulp-nodemon": "^2.0.6"
