@@ -19,7 +19,9 @@
   "homepage": "https://github.com/OpenBacklog/Networks.MeetUp.Node.js#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "escape-string-regexp": "^1.0.5",
     "express": "^4.13.4",
+    "lodash": "^4.7.0",
     "mongoose": "^4.4.8",
     "passport": "^0.3.2",
     "passport-facebook-token": "^3.2.0",

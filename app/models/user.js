@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
 	firstName: String,
 	lastName: String,
+	name: String,
 	profilePhoto: { type: String, default: 'default_url' },
 	email: { type: String, unique: true, sparse: true },
 	password: String,

@@ -17,13 +17,14 @@ module.exports = function(){
 						user = new User({
 							firstName: profile._json.first_name,
 							lastName: profile._json.last_name,
+							name: profile._json.name,
 							profilePhoto: profile.photos[0].value,
 							email: profile.emails[0].value,
 							facebookId: profile.id
 						});
 						user.save(function(err, result){
 							if(err){
-								res.json(500, err);
+								res.status(500).json(err);
 							} else {
 								req.user = result;
 								next(null, user);

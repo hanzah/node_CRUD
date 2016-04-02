@@ -1,7 +1,6 @@
-var authMiddleware = require('../middleware/auth')
+var authMiddleware = require('../middleware/auth');
+var sessionsController = require('../controllers/server/sessions');
 
 module.exports = function(router){
-	router.post('/sessions', authMiddleware.authOrCreate, function(req, res){
-		res.json(201, req.user);
-	});
+	router.post('/sessions', authMiddleware.authOrCreate, sessionsController.create);
 };
