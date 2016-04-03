@@ -1,6 +1,7 @@
 var Poster = require('../../models/poster');
 var ApplicationPolicy = require('../../policies/application');
 var PosterPolicy = require('../../policies/poster');
+var PosterRendererService = require('../../services/posterRenderer');
 
 module.exports = (function(){
 	function get(req, res){
@@ -29,8 +30,18 @@ module.exports = (function(){
 			}
 		})
 	}
+
+	function favoriteFuture(req, res){
+		PosterRendererService.findFuture(req, res, {createdBy: {$in: req.user.lastVisitedUsers}});
+	}
+
+	function nonfavoriteFuture(req, res){
+		PosterRendererService.findFuture(req, res, {createdBy: {$nin: req.user.lastVisitedUsers}});
+	}
 	return {
 		get: get,
-		create: create
+		create: create,
+		favoriteFuture: favoriteFuture,
+		nonfavoriteFuture: nonfavoriteFuture
 	}
 })();

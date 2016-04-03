@@ -2,7 +2,7 @@ var passport = require('passport');
 var User = require('../models/user');
 
 module.exports = function(){
-	var authOrCreate = function(req, res, next){
+	 function authOrCreate(req, res, next){
 		passport.authenticate('facebook-token', function(err, profile, info){
 			if(err || !profile){
 				res.json(401)
@@ -36,7 +36,7 @@ module.exports = function(){
 		})(req, res, next);
 	}
 
-	var auth = function(req, res, next){
+	function auth(req, res, next){
 		return passport.authenticate('facebook-token', function(err, profile, info){
 			if(err || !profile){
 				res.json(401)

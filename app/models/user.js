@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var _ = require('lodash');
 
 var userSchema = new Schema({
 	firstName: String,
@@ -19,7 +20,7 @@ var userSchema = new Schema({
 userSchema.pre('save', function(next) {
 	var user = this;
 	if(user.lastVisitedUsers){
-		user.lastVisitedUsers = user.lastVisitedUsers.splice(0, 5);
+		user.lastVisitedUsers = _.uniqWith(user.lastVisitedUsers, _.isEqual).splice(0, 5);
 	}
 	next();
 });

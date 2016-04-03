@@ -1,5 +1,9 @@
 var User = require('../../models/user');
+var Poster = require('../../models/poster');
 var escapeStringRegexp = require('escape-string-regexp');
+var ApplicationPolicy = require('../../policies/application');
+var UserPolicy = require('../../policies/user');
+var PosterRendererService = require('../../services/posterRenderer');
 
 module.exports = (function(){
 	function index(req, res){
@@ -16,7 +20,16 @@ module.exports = (function(){
 			}
 		})
 	}
+
+	function futurePosters(req, res){
+		ApplicationPolicy(req, res, UserPolicy.futurePosters(req.user, req.record));
+		req.user.lastVisitedUsers.unshift(req.record._id);
+		req.user.save(function(err, result){});
+		PosterRendererService.findFuture(req, res, {createdBy: req.record._id});
+	}
+
 	return {
-		index: index
+		index: index,
+		futurePosters: futurePosters
 	}
 })();
