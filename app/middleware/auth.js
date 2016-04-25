@@ -5,11 +5,11 @@ module.exports = function(){
 	 function authOrCreate(req, res, next){
 		passport.authenticate('facebook-token', function(err, profile, info){
 			if(err || !profile){
-				res.json(401)
+				res.status(401).json()
 			} else {
 				User.findOne({'facebookId': profile.id}, function(err, result){
 					if(err){
-						res.json(401)
+						res.status(401).json()
 					} else if(result){
 						req.user = result;
 						next(null, result);
@@ -39,11 +39,11 @@ module.exports = function(){
 	function auth(req, res, next){
 		return passport.authenticate('facebook-token', function(err, profile, info){
 			if(err || !profile){
-				res.json(401)
+				res.status(401).json()
 			} else {
 				User.findOne({'facebookId': profile.id}, function(err, result){
 					if(err || !result){
-						res.json(401)
+						res.status(401).json()
 					} else {
 						req.user = result;
 						next(null, result);

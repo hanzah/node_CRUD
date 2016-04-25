@@ -12,7 +12,7 @@ module.exports = (function(){
 		skip = req.query['skip'] ? parseInt(req.query['skip']) : 0;
 
 		User.find({name: new RegExp('.*'+query+'.*', 'i')}).skip(skip).limit(limit)
-		.select('_id name').exec(function(err, result){
+		.select('_id name profilePhoto').exec(function(err, result){
 			if(err){
 				res.status(500).json(err);
 			} else {
