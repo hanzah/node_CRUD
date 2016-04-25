@@ -1,0 +1,13 @@
+web:
+  ports:
+   - 80:3000
+  environment:
+   - PORT=3000
+   - MONGO=mongodb://db:27017/meetup
+   - FACEBOOK_APP_ID=1535281026776391
+   - FACEBOOK_APP_SECRET=4299ead9b73e6bbfd397806995adf732
+  volumes:
+   - .:/usr/src/app/
+db:
+  ports:
+   - 27017:27017
