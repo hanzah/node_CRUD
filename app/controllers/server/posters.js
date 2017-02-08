@@ -1,7 +1,8 @@
 var Poster = require('../../models/poster');
 var ApplicationPolicy = require('../../policies/application');
-var PosterPolicy = require('../../policies/poster');
+var PosterPolicy = require('../../policies/poster'); 
 var PosterRendererService = require('../../services/posterRenderer');
+var redis = require('../../config/redis.js');
 
 module.exports = (function(){
 	function get(req, res){
@@ -26,6 +27,7 @@ module.exports = (function(){
 			if(err){
 				res.status(409).json(err);
 			} else {
+				redis.publish('createdPoster', JSON.stringify({ posterId: result._id}));
 				res.status(201).json(result);
 			}
 		})

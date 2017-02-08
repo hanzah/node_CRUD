@@ -1,5 +1,6 @@
 require('./config/passport');
 require('./config/mongoose');
+require('./services/pushNotifications');
 
 var express = require('express');
 var bodyParser = require('body-parser');

@@ -6,4 +6,6 @@ module.exports = function(router){
 	router.get('/users', authMiddleware.auth, usersController.index);
 	router.get('/users/:userId/posters/future', authMiddleware.auth, findMiddleware.findRecord('userId', 'user'),
 				usersController.futurePosters);
+	router.post('/users/:userId/devices', authMiddleware.auth, findMiddleware.findRecord('userId', 'user'),
+				usersController.createDevice);
 };

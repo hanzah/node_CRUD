@@ -10,6 +10,7 @@ var userSchema = new Schema({
 	email: { type: String, unique: true, sparse: true },
 	password: String,
 	facebookId: { type: String, unique: true, sparse: true },
+	devices: [{type: mongoose.Schema.Types.ObjectId, ref: 'Device'}],
 	admin: { type: Boolean, default: false },
 	lastVisitedUsers: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 },

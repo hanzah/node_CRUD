@@ -4,6 +4,10 @@ web:
   command: npm start
   links:
    - db
+   - redis
 db:
   restart: always
   image: mongo:3.2
+redis:
+  restart: always
+  image: redis

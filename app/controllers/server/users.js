@@ -1,5 +1,7 @@
 var User = require('../../models/user');
 var Poster = require('../../models/poster');
+var Device = require('../../models/device');
+var _ = require('lodash');
 var escapeStringRegexp = require('escape-string-regexp');
 var ApplicationPolicy = require('../../policies/application');
 var UserPolicy = require('../../policies/user');
@@ -28,8 +30,35 @@ module.exports = (function(){
 		PosterRendererService.findFuture(req, res, {createdBy: req.record._id});
 	}
 
+	function createDevice(req, res){
+		if(ApplicationPolicy(req, res, UserPolicy.createDevice(req.user, req.record))){ return; }
+		console.log(req.body)
+		device = new Device(req.body['device']);
+		Device.find({token: device.token}).then(function(results){
+			_.each(results, function(item){
+				item.remove();
+			});
+		}).then(function(){
+			device.save(function(err, deviceResult){
+				if(err){
+					res.status(500).json(err);
+				}else{
+					req.user.devices.push(deviceResult);
+					req.user.save(function(err, result){
+						if(err){
+							res.status(500).json(err);
+						}else{
+							res.status(201).json(deviceResult);
+						}
+					});
+				}
+			});
+		});
+	}
+
 	return {
 		index: index,
-		futurePosters: futurePosters
+		futurePosters: futurePosters,
+		createDevice: createDevice
 	}
 })();
