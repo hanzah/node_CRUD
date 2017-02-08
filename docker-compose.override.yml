@@ -5,12 +5,12 @@ web:
    - PORT=3000
    - MONGO=mongodb://db:27017/meetup
    - REDIS=redis://redis:6379
-   - FACEBOOK_APP_ID=1535281026776391
-   - FACEBOOK_APP_SECRET=4299ead9b73e6bbfd397806995adf732
+   - FACEBOOK_APP_ID=xxx
+   - FACEBOOK_APP_SECRET=xxx
    - APNS_ENV = sandbox
    - APNS_CERT = ../config/certificates/sandbox/cert.pem
    - APNS_KEY = ../config/certificates/sandbox/key.pem
-   - GCM_API_KEY = AIzaSyCY506zUuzSvfIvT0gdg8I9rLTDfHaYkTc
+   - GCM_API_KEY = xxx
   volumes:
    - .:/usr/src/app/
 db:

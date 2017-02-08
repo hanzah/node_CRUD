@@ -1,5 +1,5 @@
 var gcm = require('node-gcm'); 
-var gcmConnection = new gcm.Sender(process.env.GCM_API_KEY || 'AIzaSyCY506zUuzSvfIvT0gdg8I9rLTDfHaYkTc');
+var gcmConnection = new gcm.Sender(process.env.GCM_API_KEY || 'xxx');
 
 module.exports = function(){
 	function sendInviteNotification(tokens){
